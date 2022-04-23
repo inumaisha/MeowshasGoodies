@@ -14,11 +14,19 @@ use App\Http\Controllers\PageController;
 |
 */
 
-Route::get('/', [PageController::class, 'home']);
-Route::get('/about', [PageController::class, 'about']);
-Route::get('/services', [PageController::class, 'services']);
+Route::redirect('/', '/en');
+Route::group(['prefix' => '{langauge}'], function(){
+    Route::get('/', [PageController::class, 'home']);
+    Route::get('/about', [PageController::class, 'about']);
+    Route::get('/services', [PageController::class, 'services']);
+});
+// Route::get('/test', function(){
+//     App::setLocale('fr');
 
-
+//     if(App::isLocale('fr')){
+//         dd(App ::getLocalle());
+//     }
+// });
 
 // Route::get('/', function () {
 //     return view('pages.index');
