@@ -15,6 +15,8 @@ use App\Http\Controllers\PageController;
 */
 
 Route::redirect('/', '/en');
+Route::redirect('/about', '/en/about');
+Route::redirect('/services', '/en/services');
 Route::group(['prefix' => '{langauge}'], function(){
     Route::get('/', [PageController::class, 'home']);
     Route::get('/about', [PageController::class, 'about']);

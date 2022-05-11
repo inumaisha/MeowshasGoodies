@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class PageController extends Controller
 {
@@ -13,6 +15,9 @@ class PageController extends Controller
         return view('pages.about');
     }
     public function services() {
-        return view('pages.services');
-    }
+        // $products = DB::table('products');
+        // ->get();
+        $products = Product::paginate(15);
+        return view('pages.services')->with('products', $products);
+     }
 }
