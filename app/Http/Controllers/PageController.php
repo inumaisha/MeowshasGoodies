@@ -14,10 +14,16 @@ class PageController extends Controller
     public function about () {
         return view('pages.about');
     }
-    public function services() {
-        // $products = DB::table('products');
-        // ->get();
+    public function services($language) {
         $products = Product::paginate(15);
-        return view('pages.services')->with('products', $products);
+        return view('pages.services')->with
+        (['products' => $products,
+        'language' => $language,]);
+    }
+     public function show($language, $id){
+        $product = Product::find($id);
+        return view('pages.show')->with
+        (['product' => $product,
+        'language' => $language,]);
      }
 }
